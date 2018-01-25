@@ -1,3 +1,5 @@
+**Issue fixed** see `project.clj` to know about the workaround
+---
 Project created to replicate an issue with `lein-test-refresh`
 
 To replicate:

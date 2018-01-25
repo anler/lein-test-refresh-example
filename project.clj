@@ -7,8 +7,12 @@
                  [cprop "0.1.11"]]
   :plugins [[com.jakemccrary/lein-test-refresh "0.22.0"]
             [lein-cprop "1.0.3"]]
-  :jvm-opts ["-server" "-Dconf=.lein-env"]
-  :profiles {:dev  [:profiles/dev]
-             :test [:profiles/test]
-             :profiles/dev {:db "dev default value"}
+  :jvm-opts ["-server" "-Dconf=.lein-env-default"]
+  :profiles {:dev           [:project/dev :profiles/dev]
+             :test          [:project/test :profiles/test]
+             :project/dev   {:jvm-opts ["-server" "-Dconf=.lein-env-dev"]
+                             :cprop    {:config-file ".lein-env-dev"}}
+             :project/test  {:jvm-opts ["-server" "-Dconf=.lein-env-test"]
+                             :cprop    {:config-file ".lein-env-test"}}
+             :profiles/dev  {:db "dev default value"}
              :profiles/test {:db "test default value"}})
